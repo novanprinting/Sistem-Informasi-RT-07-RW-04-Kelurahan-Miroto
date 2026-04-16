@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistem Informasi RT 07 RW 04 Kel. Miroto</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3730a3">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" href="logoertepitu.png">
+	<script>
+	  if ('serviceWorker' in navigator) {
+	    navigator.serviceWorker.register('sw.js');
+	  }
+	</script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-indigo-800 text-white p-4 sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+	    <div class="flex items-center gap-4">
+                <img src="logoertepitu.png" alt="Logo RT" 
+                     onerror="this.src='https://via.placeholder.com/100?text=LOGO'" 
+                     class="h-12 w-12 rounded-full border-2 border-white bg-white object-cover">
+                
+                <div>
+            <h1 class="text-xl font-bold italic">Ertepitu Digital <span class="text-xs font-light block">Sistem Informasi Warga RT 07 RW 04 Kel. Miroto</span></h1>
+            <div class="space-x-4">
+                <button onclick="showPage('finance')" class="hover:text-indigo-200 transition">Keuangan</button>
+                <button onclick="showPage('residents')" class="hover:text-indigo-200 transition">Data Warga</button>
+	                <button onclick="showPage('activities')" class="hover:text-indigo-200 transition">Kegiatan</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-8 px-4 pb-12">
+
+        <div id="finance" class="page active">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-indigo-500 pb-2">Laporan Keuangan RT</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="bg-green-500 text-white p-6 rounded-lg shadow">
+                    <p class="text-sm uppercase">Total Kas Masuk</p>
+                    <p class="text-3xl font-bold">Rp 2.000.000</p>
+                </div>
+                <div class="bg-red-500 text-white p-6 rounded-lg shadow">
+                    <p class="text-sm uppercase">Total Kas Keluar</p>
+                    <p class="text-3xl font-bold">Rp 100.000</p>
+                </div>
+                <div class="bg-blue-600 text-white p-6 rounded-lg shadow border-4 border-blue-200">
+                    <p class="text-sm uppercase">Saldo Kas Saat Ini</p>
+                    <p class="text-3xl font-bold">Rp 1.900.000</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="min-w-full leading-normal">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm">
+                            <th class="px-5 py-3 border-b-2 text-left">Kategori Kas</th>
+                            <th class="px-5 py-3 border-b-2 text-right">Nominal (Rp)</th>
+                            <th class="px-5 py-3 border-b-2 text-center">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                        <tr><td class="px-5 py-4 border-b">Kas Sampah</td><td class="px-5 py-4 border-b text-right">2.500.000</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">Stabil</span></td></tr>
+                        <tr><td class="px-5 py-4 border-b">Jimpitan (Kemanusiaan)</td><td class="px-5 py-4 border-b text-right">1.200.000</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">Aktif</span></td></tr>
+                        <tr><td class="px-5 py-4 border-b">Bank Sampah</td><td class="px-5 py-4 border-b text-right">850.000</td><td class="px-5 py-4 border-b text-center"><span class="bg-yellow-100 text-yellow-800 py-1 px-3 rounded-full text-xs">Audit</span></td></tr>
+                        <tr><td class="px-5 py-4 border-b">Kas PKK</td><td class="px-5 py-4 border-b text-right">3.400.000</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">Stabil</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="residents" class="page">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-indigo-500 pb-2">Data Kependudukan</h2>
+            <div class="bg-white rounded-lg shadow p-6">
+                <div class="flex gap-4 mb-6">
+                    <div class="flex-1 bg-gray-50 p-4 rounded text-center">
+                        <span class="block text-2xl font-bold text-indigo-600">120</span>
+                        <span class="text-xs text-gray-500">Domisili</span>
+                    </div>
+                    <div class="flex-1 bg-gray-50 p-4 rounded text-center">
+                        <span class="block text-2xl font-bold text-indigo-600">15</span>
+                        <span class="text-xs text-gray-500">Non-Domisili</span>
+                    </div>
+                    <div class="flex-1 bg-gray-50 p-4 rounded text-center">
+                        <span class="block text-2xl font-bold text-indigo-600">8</span>
+                        <span class="text-xs text-gray-500">Boro (Perantau)</span>
+                    </div>
+                </div>
+                
+                <table class="min-w-full border-collapse">
+                    <thead class="bg-indigo-50">
+                        <tr>
+                            <th class="p-3 text-left">Nama</th>
+                            <th class="p-3 text-left">Status</th>
+                            <th class="p-3 text-left">Alamat/Tinggal</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr><td class="p-3 font-medium">Radite Nauvan S</td><td class="p-3"><span class="text-blue-600">Domisili</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 11 B</td></tr>
+                        <tr><td class="p-3 font-medium">Henry Hendra Yudha</td><td class="p-3"><span class="text-orange-600">Non-Domisili</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 21</td></tr>
+                        <tr><td class="p-3 font-medium">Herman Bachtiar</td><td class="p-3"><span class="text-purple-600">Boro</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 14</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="activities" class="page">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-indigo-500 pb-2">Dokumentasi Kegiatan</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border">
+                    <img src="kegiatan1.jpg" alt="Kegiatan Jaga Malam" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-indigo-800">Jaga Malam</h3>
+                        <p class="text-sm text-gray-500 mb-2 italic">12 April 2026</p>
+                        <p class="text-gray-600 text-sm">Menjaga Keamanan Wilayah</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border">
+                    <img src="Kegiatan2" alt="Kerja Bakti" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg text-indigo-800">Kerja Bakti Lingkungan</h3>
+                        <p class="text-sm text-gray-500 mb-2 italic">10 Juni 2026</p>
+                        <p class="text-gray-600 text-sm">Pembersihan Selokan Menjelang 17an</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 bg-indigo-50 border-2 border-dashed border-indigo-200 rounded-xl p-8 text-center">
+                <i class="fab fa-whatsapp text-5xl text-green-500 mb-4"></i>
+                <h3 class="text-xl font-bold mb-2">Ada Kendala atau Laporan Warga?</h3>
+                <p class="text-gray-600 mb-6">Klik tombol di bawah untuk langsung terhubung dengan pengurus RT melalui WhatsApp.</p>
+                <a href="https://wa.me/6281226239220?text=Halo%20Pak%20RT,%20saya%20ingin%20melaporkan%20terkait..." target="_blank" 
+                   class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105">
+                    Kirim Laporan ke WA RT
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            // Sembunyikan semua halaman
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            // Tampilkan halaman terpilih
+            document.getElementById(pageId).classList.add('active');
+            // Scroll ke atas
+            window.scrollTo(0,0);
+        }
+    </script>
+</body>
+</html>

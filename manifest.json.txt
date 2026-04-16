@@ -1,0 +1,20 @@
+{
+  "name": "SISTEM INFORMASI RT 07 RW 04 KEL. MIROTO",
+  "short_name": "ERTEPITU DIGITAL",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3730a3",
+  "icons": [
+    {
+      "src": "logoertepitu.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logoertepitu.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
