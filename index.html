@@ -34,7 +34,9 @@
             <div class="space-x-4">
                 <button onclick="showPage('finance')" class="hover:text-indigo-200 transition">Keuangan</button>
                 <button onclick="showPage('residents')" class="hover:text-indigo-200 transition">Data Warga</button>
-	                <button onclick="showPage('activities')" class="hover:text-indigo-200 transition">Kegiatan</button>
+	            <button onclick="showPage('activities')" class="hover:text-indigo-200 transition">Kegiatan</button>
+				<button onclick="showPage('location')" class="hover:text-indigo-200 transition">Denah</button>
+				<button onclick="showPage('promotion')" class="hover:text-indigo-200 transition">Iklan Warga</button>
             </div>
         </div>
     </nav>
@@ -255,9 +257,7 @@
 						<tr><td class="p-3 font-medium">Suyanto</td><td class="p-3"><span class="text-green-600">Non-Domisili</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 28</td></tr>
 						<tr><td class="p-3 font-medium">Wiwin Nur H</td><td class="p-3"><span class="text-green-600">Non-Domisili</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 28</td></tr>
 						<tr><td class="p-3 font-medium">Muhammad Daffa R M</td><td class="p-3"><span class="text-green-600">Non-Domisili</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 28</td></tr>
-						<tr><td class="p-3 font-medium">Muhammad Rafif M</td><td class="p-3"><span class="text-green-600">Non-Domisili</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 28</td></tr>
-						
-						
+						<tr><td class="p-3 font-medium">Muhammad Rafif M</td><td class="p-3"><span class="text-green-600">Non-Domisili</span></td><td class="p-3 text-gray-500">Jl. Batan Timur IV No. 28</td></tr>						
                     </tbody>
                 </table>
             </div>
@@ -298,6 +298,62 @@
         </div>
 
     </div>
+		<div id="location" class="page">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-indigo-500 pb-2">Lokasi & Denah Wilayah</h2>
+            
+            <div class="bg-white rounded-lg shadow-md overflow-hidden p-2">
+                <div class="aspect-video w-full">
+                    <iframe 
+                        src="https://maps.app.goo.gl/orVJGgUeK3grJPS79" 
+                        class="w-full h-full border-0" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+                
+                <div class="mt-6">
+                    <h3 class="font-bold text-lg mb-3">Foto Lingkungan</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <img src="gapura.jpg" onerror="this.src='gapura'" class="rounded-lg w-full">
+                            <p class="text-sm text-gray-600 mt-2 italic">Gapura RT 07 RW 04 Kelurahan Miroto</p>
+                        </div>
+                        <div>
+                            <img src="tempatkumpul.jpg" onerror="this.src='pos'" class="rounded-lg w-full">
+                            <p class="text-sm text-gray-600 mt-2 italic">Pos Keamanan dan Titik Kumpul Warga</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="promotion" class="page">
+            <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-indigo-500 pb-2">Etalase Usaha Warga</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border flex flex-col">
+                    <img src="produk1.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Produk+Makanan'" class="w-full h-48 object-cover">
+                    <div class="p-4 flex-grow">
+                        <h3 class="font-bold text-lg text-indigo-800">Catering Ibu Sari</h3>
+                        <p class="text-sm text-gray-600 mb-4">Menerima pesanan nasi box, snack box, dan prasmanan untuk acara keluarga.</p>
+                        <a href="https://wa.me/628123456789?text=Halo%20Bu%20Sari,%20saya%20tertarik%20dengan%20cateringnya" 
+                           class="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp"></i> Hubungi Pemilik
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-md overflow-hidden border flex flex-col">
+                    <img src="produk2.jpg" onerror="this.src='https://via.placeholder.com/400x300?text=Jasa+Servis'" class="w-full h-48 object-cover">
+                    <div class="p-4 flex-grow">
+                        <h3 class="font-bold text-lg text-indigo-800">Servis AC Berkah</h3>
+                        <p class="text-sm text-gray-600 mb-4">Jasa cuci AC, tambah freon, dan perbaikan elektronik. Harga warga RT 07.</p>
+                        <a href="https://wa.me/628987654321?text=Halo%20Pak,%20mau%20tanya%20servis%20AC" 
+                           class="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition">
+                            <i class="fab fa-whatsapp"></i> Hubungi Pemilik
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <script>
         function showPage(pageId) {
