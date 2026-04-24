@@ -7,12 +7,12 @@
   "theme_color": "#3730a3",
   "icons": [
     {
-      "src": "logoertepitu.png",
+      "src": "ertepitu.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "logoertepitu.png",
+      "src": "ertepitu.png",
       "sizes": "512x512",
       "type": "image/png"
     }
