@@ -68,13 +68,28 @@
                             <th class="px-5 py-3 border-b-2 text-right">Nominal (Rp)</th>
                             <th class="px-5 py-3 border-b-2 text-center">Status</th>
                         </tr>
-                    </thead>
-                    <tbody class="text-gray-700">
-                        <tr><td class="px-5 py-4 border-b">Kas Sampah</td><td class="px-5 py-4 border-b text-right">0</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">April 2026</span></td></tr>
-                        <tr><td class="px-5 py-4 border-b">Jimpitan</td><td class="px-5 py-4 border-b text-right">0</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">April 2026</span></td></tr>
-                        <tr><td class="px-5 py-4 border-b">Bank Sampah</td><td class="px-5 py-4 border-b text-right">765.000</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">April 2026</span></td></tr>
-                        <tr><td class="px-5 py-4 border-b">Kas PKK</td><td class="px-5 py-4 border-b text-right">1.615.000</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">April 2026</span></td></tr>
-                    </tbody>
+                    </thead><tbody class="text-gray-700">
+    <tr class="hover:bg-gray-50">
+        <td class="px-5 py-4 border-b">Kas Sampah</td>
+        <td id="tampil-kasSsampah" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 0</td>
+        <td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Update</span></td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+        <td class="px-5 py-4 border-b">Jimpitan</td>
+        <td id="tampil-jimpitan" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 0</td>
+        <td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Update</span></td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+        <td class="px-5 py-4 border-b">Bank Sampah</td>
+        <td id="tampil-bankSampah" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 0</td>
+        <td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Update</span></td>
+    </tr>
+    <tr class="hover:bg-gray-50">
+        <td class="px-5 py-4 border-b">Kas PKK</td>
+        <td id="tampil-kasPKK" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 0</td>
+        <td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Update</span></td>
+    </tr>
+</tbody>
                 </table>
             </div>
         </div>
@@ -248,28 +263,27 @@
   // GANTI DENGAN URL WEB APP ANDA TADI
   const urlAPI = "https://script.google.com/macros/s/AKfycbwMOnghQBsNOmSKoqhY0oy3USiZTkg5XNYa-55AcldGAAEWlEYqpTTL2Gje3sdptzAedA/exec";
 
-  function loadDataGSheet() {
-    fetch(urlAPI)
-      .then(res => res.json())
-      .then(data => {
-        // Update Kartu Saldo
-        document.getElementById('tampil-saldo-awal').innerText = "Rp " + Number(data.saldoAwal).toLocaleString();
-        document.getElementById('tampil-pengeluaran').innerText = "Rp " + Number(data.pengeluaran).toLocaleString();
-        document.getElementById('tampil-saldo-akhir').innerText = "Rp " + Number(data.saldoAkhir).toLocaleString();
+  function loadData() {
+        fetch(urlAPI)
+            .then(response => response.json())
+            .then(data => {
+                // Mengisi angka di kotak atas (Dashboard)
+                document.getElementById('tampil-saldo-awal').innerText = "Rp " + Number(data.saldoAwal).toLocaleString('id-ID');
+                document.getElementById('tampil-pengeluaran').innerText = "Rp " + Number(data.pengeluaran).toLocaleString('id-ID');
+                document.getElementById('tampil-saldo-akhir').innerText = "Rp " + Number(data.saldoAkhir).toLocaleString('id-ID');
 
-        // Update Tabel Keuangan (Urutan harus sesuai kolom di HTML Anda)
-        const tabel = document.querySelector('tbody');
-        tabel.innerHTML = `
-          <tr><td class="px-5 py-4 border-b">Kas Sampah</td><td class="px-5 py-4 border-b text-right">${Number(data.kasSampah).toLocaleString()}</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">Aktif</span></td></tr>
-          <tr><td class="px-5 py-4 border-b">Jimpitan</td><td class="px-5 py-4 border-b text-right">${Number(data.jimpitan).toLocaleString()}</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">Aktif</span></td></tr>
-          <tr><td class="px-5 py-4 border-b">Bank Sampah</td><td class="px-5 py-4 border-b text-right">${Number(data.bankSampah).toLocaleString()}</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">Aktif</span></td></tr>
-          <tr><td class="px-5 py-4 border-b">Kas PKK</td><td class="px-5 py-4 border-b text-right">${Number(data.kasPKK).toLocaleString()}</td><td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-800 py-1 px-3 rounded-full text-xs">Aktif</span></td></tr>
-        `;
-      });
-  }
+                // Mengisi angka di tabel (Rincian)
+                document.getElementById('tampil-sampah').innerText = "Rp " + Number(data.kasSampah).toLocaleString('id-ID');
+                document.getElementById('tampil-jimpitan').innerText = "Rp " + Number(data.jimpitan).toLocaleString('id-ID');
+                document.getElementById('tampil-banksampah').innerText = "Rp " + Number(data.bankSampah).toLocaleString('id-ID');
+                document.getElementById('tampil-pkk').innerText = "Rp " + Number(data.kasPKK).toLocaleString('id-ID');
+            })
+            .catch(error => console.error('Gagal mengambil data:', error));
+    }
 
-  // Jalankan fungsi saat web dibuka
-  window.onload = loadDataGSheet;
+    // Jalankan fungsi saat halaman dibuka
+    window.onload = loadData;
+</script>
 </script>	
 		</body>
 			<footer class="mt-10 pb-5 text-center">
