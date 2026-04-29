@@ -247,24 +247,6 @@
         }
     </script>
 <!-- Masukkan SDK Firebase di atas script Anda -->
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-<script>
-  // TEMPELKAN KONFIGURASI ANDA DI SINI
-  const firebaseConfig = {
-  apiKey: "AIzaSyAAL75CTTo_-N6Bci9lpwIWiibwwvrqE6M",
-  authDomain: "si-forma-rt07-rw04.firebaseapp.com",
-  projectId: "si-forma-rt07-rw04",
-  storageBucket: "si-forma-rt07-rw04.firebasestorage.app",
-  messagingSenderId: "204795872669",
-  appId: "1:204795872669:web:64145657180833c16c5b74",
-  measurementId: "G-XVVLNX0C62"
-  };
-
-  // Inisialisasi Firebase
-  firebase.initializeApp(firebaseConfig);
-  const db = firebase.database();
 
   // LOGIN CONFIG
   const ADMIN_USER = "adminrt07";
@@ -284,34 +266,43 @@
 
   // FUNGSI SIMPAN DATA KE FIREBASE
   function saveData(type) {
-      if (type === 'finance') {
-          const dataKeuangan = {
-              saldoAwal: document.getElementById('inp-saldo-awal').value,
-              pengeluaran: document.getElementById('inp-pengeluaran').value,
-              saldoAkhir: document.getElementById('inp-saldo-akhir').value,
-              kasSampah: { nominal: document.getElementById('inp-sampah').value, status: document.getElementById('stat-sampah').value },
-              kasJimpitan: { nominal: document.getElementById('inp-jimpitan').value, status: document.getElementById('stat-jimpitan').value },
-              kasBankSampah: { nominal: document.getElementById('inp-banksampah').value, status: document.getElementById('stat-banksampah').value },
-              kasPKK: { nominal: document.getElementById('inp-pkk').value, status: document.getElementById('stat-pkk').value }
-          };
-          
-          // Kirim ke Firebase dengan folder 'RT07'
-          db.ref('RT07/keuangan').set(dataKeuangan)
-            .then(() => alert("Laporan Keuangan RT 07 Berhasil Diperbarui!"))
-            .catch((error) => alert("Gagal: " + error.message));
-      }
-      
-      if (type === 'residents') {
-          // Tambahkan logika serupa untuk data penduduk
-          const dataWarga = {
-              domisili: document.querySelector('input[placeholder="Domisili"]').value,
-              lakiLaki: document.querySelector('input[placeholder="Laki-laki"]').value,
-              perempuan: document.querySelector('input[placeholder="Perempuan"]').value,
-              // ... tambahkan semua kolom sesuai input Anda
-          };
-          db.ref('RT07/penduduk').set(dataWarga).then(() => alert("Data Warga Diperbarui!"));
-      }
-  }
+    if (type === 'finance') {
+        const dataKeuangan = {
+            saldoAwal: document.getElementById('inp-saldo-awal').value,
+            pengeluaran: document.getElementById('inp-pengeluaran').value,
+            saldoAkhir: document.getElementById('inp-saldo-akhir').value,
+            kasSampah: document.getElementById('inp-sampah').value,
+            jimpitan: document.getElementById('inp-jimpitan').value,
+            bankSampah: document.getElementById('inp-banksampah').value,
+            kasPKK: document.getElementById('inp-pkk').value
+        };
+
+        // GANTI URL DI BAWAH INI DENGAN URL WEB APP YANG ANDA SALIN TADI
+        const urlAPI = "https://script.google.com/macros/s/AKfycbyf8Y7GaoaWGCoRWgsxc0zRf1jhoQDZk9iEbKGwFh51Dazfhql8lK5xQZPt_7tNc4k9qg/exec";
+
+        // Efek loading sederhana
+        const btn = event.target;
+        const originalText = btn.innerText;
+        btn.innerText = "Sedang Menyimpan...";
+        btn.disabled = true;
+
+        fetch(urlAPI, {
+            method: 'POST',
+            mode: 'no-cors', 
+            body: JSON.stringify(dataKeuangan)
+        })
+        .then(() => {
+            alert("Berhasil! Data Google Sheets RT 07 telah diperbarui.");
+            btn.innerText = originalText;
+            btn.disabled = false;
+        })
+        .catch(err => {
+            alert("Gagal menyimpan: " + err);
+            btn.innerText = originalText;
+            btn.disabled = false;
+        });
+    }
+}
 
   // SCRIPT TAB & AUTO-CALCULATE (Tetap seperti sebelumnya)
   function showTab(tabId) {
