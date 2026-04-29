@@ -48,15 +48,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <div class="bg-green-500 text-white p-6 rounded-lg shadow">
                     <p class="text-sm uppercase">SALDO AWAL</p>
-                    <p id="display-saldo-awal" class="text-3xl font-bold">Rp 0</p>
+                    <p id="tampil-saldo-awal" class="text-3xl font-bold">Rp 0</p>
                 </div>
                 <div class="bg-red-500 text-white p-6 rounded-lg shadow">
                     <p class="text-sm uppercase">TOTAL PENGELUARAN</p>
-                    <p id="display-pengeluaran" class="text-3xl font-bold">Rp 0</p>
+                    <p id="tampil-pengeluaran" class="text-3xl font-bold">Rp 0</p>
                 </div>
                 <div class="bg-blue-600 text-white p-6 rounded-lg shadow border-4 border-blue-200">
                     <p class="text-sm uppercase">SALDO AKHIR</p>
-                    <p id="display-saldo-akhir" class="text-3xl font-bold">Rp 0</p>
+                    <p id="tampil-saldo-akhir" class="text-3xl font-bold">Rp 0</p>
                 </div>
             </div>
 
@@ -267,12 +267,11 @@
   // 3. Fungsi "Mendengar" Perubahan Data
   // Artinya: Setiap ada data berubah di Firebase, jalankan perintah di bawah
   db.ref('RT07/keuangan').on('value', (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-          // Cari elemen di index.html, lalu ganti isinya dengan data dari Firebase
-          document.getElementById('display-saldo-awal').innerText = "Rp " + Number(data.saldoAwal).toLocaleString('id-ID');
-          document.getElementById('display-pengeluaran').innerText = "Rp " + Number(data.pengeluaran).toLocaleString('id-ID');
-          document.getElementById('display-saldo-akhir').innerText = "Rp " + Number(data.saldoAkhir).toLocaleString('id-ID');
+        const data = snapshot.val();
+        if(data) {
+            document.getElementById('tampil-saldo-awal').innerText = "Rp " + Number(data.saldoAwal).toLocaleString('id-ID');
+            document.getElementById('tampil-pengeluaran').innerText = "Rp " + Number(data.totalPengeluaran).toLocaleString('id-ID');
+            document.getElementById('tampil-saldo-akhir').innerText = "Rp " + Number(data.saldoAkhir).toLocaleString('id-ID');
       }
   });
 </script>
