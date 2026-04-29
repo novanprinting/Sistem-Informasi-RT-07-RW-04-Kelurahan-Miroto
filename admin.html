@@ -205,14 +205,13 @@
     </main>
 
     <script>
-        // LOGIN CONFIG
+        // 1. CONFIG LOGIN
         const ADMIN_USER = "adminrt07";
         const ADMIN_PASS = "miroto2026";
 
         function checkLogin() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
-
             if (u === ADMIN_USER && p === ADMIN_PASS) {
                 document.getElementById('login-overlay').classList.add('hidden');
                 document.getElementById('main-sidebar').classList.remove('hidden');
@@ -222,18 +221,21 @@
             }
         }
 
-        // AUTO-CALCULATE SALDO AKHIR
+        // 2. AUTO-CALCULATE SALDO
         const salAwal = document.getElementById('inp-saldo-awal');
         const pengeluaran = document.getElementById('inp-pengeluaran');
         const salAkhir = document.getElementById('inp-saldo-akhir');
 
-        [salAwal, pengeluaran].forEach(el => {
-            el.addEventListener('input', () => {
-                const total = (Number(salAwal.value) || 0) - (Number(pengeluaran.value) || 0);
-                salAkhir.value = total;
+        if(salAwal && pengeluaran) {
+            [salAwal, pengeluaran].forEach(el => {
+                el.addEventListener('input', () => {
+                    const total = (Number(salAwal.value) || 0) - (Number(pengeluaran.value) || 0);
+                    salAkhir.value = total;
+                });
             });
-        });
+        }
 
+        // 3. TAB NAVIGATION
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
@@ -241,76 +243,41 @@
             event.currentTarget.classList.add('active');
         }
 
+        // 4. SAVE DATA TO GSHEET
         function saveData(type) {
-            alert("Data " + type + " berhasil diperbarui di sistem lokal!");
-            console.log("Data siap dikirim ke Firebase...");
+            if (type === 'finance') {
+                const dataKeuangan = {
+                    saldoAwal: document.getElementById('inp-saldo-awal').value,
+                    pengeluaran: document.getElementById('inp-pengeluaran').value,
+                    saldoAkhir: document.getElementById('inp-saldo-akhir').value,
+                    kasSampah: document.getElementById('inp-sampah').value,
+                    jimpitan: document.getElementById('inp-jimpitan').value,
+                    bankSampah: document.getElementById('inp-banksampah').value,
+                    kasPKK: document.getElementById('inp-pkk').value
+                };
+
+                const urlAPI = "https://script.google.com/macros/s/AKfycbyf8Y7GaoaWGCoRWgsxc0zRf1jhoQDZk9iEbKGwFh51Dazfhql8lK5xQZPt_7tNc4k9qg/exec";
+
+                const btn = event.target;
+                btn.innerText = "Sedang Menyimpan...";
+                btn.disabled = true;
+
+                fetch(urlAPI, {
+                    method: 'POST',
+                    mode: 'no-cors', 
+                    body: JSON.stringify(dataKeuangan)
+                })
+                .then(() => {
+                    alert("Berhasil! Data Google Sheets RT 07 telah diperbarui.");
+                    btn.innerText = "Update Laporan Keuangan";
+                    btn.disabled = false;
+                })
+                .catch(err => {
+                    alert("Gagal: " + err);
+                    btn.disabled = false;
+                });
+            }
         }
     </script>
-<!-- Masukkan SDK Firebase di atas script Anda -->
-
-  // LOGIN CONFIG
-  const ADMIN_USER = "adminrt07";
-  const ADMIN_PASS = "miroto2026";
-
-  function checkLogin() {
-      const u = document.getElementById('user').value;
-      const p = document.getElementById('pass').value;
-      if (u === ADMIN_USER && p === ADMIN_PASS) {
-          document.getElementById('login-overlay').classList.add('hidden');
-          document.getElementById('main-sidebar').classList.remove('hidden');
-          document.getElementById('main-content').classList.remove('hidden');
-      } else {
-          document.getElementById('error').classList.remove('hidden');
-      }
-  }
-
-  // FUNGSI SIMPAN DATA KE FIREBASE
-  function saveData(type) {
-    if (type === 'finance') {
-        const dataKeuangan = {
-            saldoAwal: document.getElementById('inp-saldo-awal').value,
-            pengeluaran: document.getElementById('inp-pengeluaran').value,
-            saldoAkhir: document.getElementById('inp-saldo-akhir').value,
-            kasSampah: document.getElementById('inp-sampah').value,
-            jimpitan: document.getElementById('inp-jimpitan').value,
-            bankSampah: document.getElementById('inp-banksampah').value,
-            kasPKK: document.getElementById('inp-pkk').value
-        };
-
-        // GANTI URL DI BAWAH INI DENGAN URL WEB APP YANG ANDA SALIN TADI
-        const urlAPI = "https://script.google.com/macros/s/AKfycbyf8Y7GaoaWGCoRWgsxc0zRf1jhoQDZk9iEbKGwFh51Dazfhql8lK5xQZPt_7tNc4k9qg/exec";
-
-        // Efek loading sederhana
-        const btn = event.target;
-        const originalText = btn.innerText;
-        btn.innerText = "Sedang Menyimpan...";
-        btn.disabled = true;
-
-        fetch(urlAPI, {
-            method: 'POST',
-            mode: 'no-cors', 
-            body: JSON.stringify(dataKeuangan)
-        })
-        .then(() => {
-            alert("Berhasil! Data Google Sheets RT 07 telah diperbarui.");
-            btn.innerText = originalText;
-            btn.disabled = false;
-        })
-        .catch(err => {
-            alert("Gagal menyimpan: " + err);
-            btn.innerText = originalText;
-            btn.disabled = false;
-        });
-    }
-}
-
-  // SCRIPT TAB & AUTO-CALCULATE (Tetap seperti sebelumnya)
-  function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
-  }
-</script>
 </body>
 </html>
