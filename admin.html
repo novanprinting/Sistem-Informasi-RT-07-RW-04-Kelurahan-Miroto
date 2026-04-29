@@ -284,23 +284,35 @@
 
   // FUNGSI SIMPAN DATA KE FIREBASE
   function saveData(type) {
-      if (type === 'finance') {
-          const dataKeuangan = {
-              saldoAwal: document.getElementById('inp-saldo-awal').value,
-              pengeluaran: document.getElementById('inp-pengeluaran').value,
-              saldoAkhir: document.getElementById('inp-saldo-akhir').value,
-              kasSampah: { nominal: document.getElementById('inp-sampah').value, status: document.getElementById('stat-sampah').value },
-              kasJimpitan: { nominal: document.getElementById('inp-jimpitan').value, status: document.getElementById('stat-jimpitan').value },
-              kasBankSampah: { nominal: document.getElementById('inp-banksampah').value, status: document.getElementById('stat-banksampah').value },
-              kasPKK: { nominal: document.getElementById('inp-pkk').value, status: document.getElementById('stat-pkk').value }
-          };
-          
-          // Kirim ke Firebase dengan folder 'RT07'
-          db.ref('RT07/keuangan').set(dataKeuangan)
-            .then(() => alert("Laporan Keuangan RT 07 Berhasil Diperbarui!"))
-            .catch((error) => alert("Gagal: " + error.message));
-      }
-      
+    if (type === 'finance') {
+        const dataKeuangan = {
+            saldoAwal: document.getElementById('inp-saldo-awal').value,
+            pengeluaran: document.getElementById('inp-pengeluaran').value,
+            saldoAkhir: document.getElementById('inp-saldo-akhir').value,
+            kasSampah: { 
+                nominal: document.getElementById('inp-sampah').value, 
+                status: document.getElementById('stat-sampah').value 
+            },
+            kasJimpitan: { 
+                nominal: document.getElementById('inp-jimpitan').value, 
+                status: document.getElementById('stat-jimpitan').value 
+            },
+            kasBankSampah: { 
+                nominal: document.getElementById('inp-banksampah').value, 
+                status: document.getElementById('stat-banksampah').value 
+            },
+            kasPKK: { 
+                nominal: document.getElementById('inp-pkk').value, 
+                status: document.getElementById('stat-pkk').value 
+            }
+        };
+        
+        // Perintah inilah yang mengirim data ke "awan" (Firebase)
+        db.ref('RT07/keuangan').set(dataKeuangan)
+          .then(() => alert("DATA BERHASIL DIKIRIM KE DATABASE!"))
+          .catch((error) => alert("Gagal mengirim: " + error.message));
+    }
+}    
       if (type === 'residents') {
           // Tambahkan logika serupa untuk data penduduk
           const dataWarga = {
