@@ -48,15 +48,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <div class="bg-green-500 text-white p-6 rounded-lg shadow">
                     <p class="text-sm uppercase">SALDO AWAL</p>
-                    <p class="text-3xl font-bold">Rp 1.609.000</p>
+                    <p id="display-saldo-awal" class="text-3xl font-bold">Rp 0</p>
                 </div>
                 <div class="bg-red-500 text-white p-6 rounded-lg shadow">
                     <p class="text-sm uppercase">TOTAL PENGELUARAN</p>
-                    <p class="text-3xl font-bold">Rp 400.000</p>
+                    <p id="display-pengeluaran" class="text-3xl font-bold">Rp 0</p>
                 </div>
                 <div class="bg-blue-600 text-white p-6 rounded-lg shadow border-4 border-blue-200">
                     <p class="text-sm uppercase">SALDO AKHIR</p>
-                    <p class="text-3xl font-bold">Rp 1.209.000</p>
+                    <p id="display-saldo-akhir" class="text-3xl font-bold">Rp 0</p>
                 </div>
             </div>
 
@@ -244,5 +244,37 @@
             window.scrollTo(0,0);
         }
     </script>
+			<!-- 1. Panggil Script Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+<script>
+  // 2. Konfigurasi (Samakan dengan admin.html)
+  const firebaseConfig = {
+    const firebaseConfig = {
+  apiKey: "AIzaSyAAL75CTTo_-N6Bci9lpwIWiibwwvrqE6M",
+  authDomain: "si-forma-rt07-rw04.firebaseapp.com",
+  projectId: "si-forma-rt07-rw04",
+  storageBucket: "si-forma-rt07-rw04.firebasestorage.app",
+  messagingSenderId: "204795872669",
+  appId: "1:204795872669:web:64145657180833c16c5b74",
+  measurementId: "G-XVVLNX0C62"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.database();
+
+  // 3. Fungsi "Mendengar" Perubahan Data
+  // Artinya: Setiap ada data berubah di Firebase, jalankan perintah di bawah
+  db.ref('RT07/keuangan').on('value', (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+          // Cari elemen di index.html, lalu ganti isinya dengan data dari Firebase
+          document.getElementById('display-saldo-awal').innerText = "Rp " + Number(data.saldoAwal).toLocaleString('id-ID');
+          document.getElementById('display-pengeluaran').innerText = "Rp " + Number(data.pengeluaran).toLocaleString('id-ID');
+          document.getElementById('display-saldo-akhir').innerText = "Rp " + Number(data.saldoAkhir).toLocaleString('id-ID');
+      }
+  });
+</script>
 		</body>
 </html>
