@@ -48,15 +48,15 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <div class="bg-green-500 text-white p-6 rounded-lg shadow">
                     <p class="text-sm uppercase">SALDO AWAL</p>
-                    <p id="tampil-saldo-awal" class="text-3xl font-bold">Rp 0</p>
+                    <p id="tampil-saldo-awal" class="text-3xl font-bold">Rp 1609000</p>
                 </div>
                 <div class="bg-red-500 text-white p-6 rounded-lg shadow">
                     <p class="text-sm uppercase">TOTAL PENGELUARAN</p>
-                    <p id="tampil-pengeluaran" class="text-3xl font-bold">Rp 0</p>
+                    <p id="tampil-pengeluaran" class="text-3xl font-bold">Rp 400000</p>
                 </div>
                 <div class="bg-blue-600 text-white p-6 rounded-lg shadow border-4 border-blue-200">
                     <p class="text-sm uppercase">SALDO AKHIR</p>
-                    <p id="tampil-saldo-akhir" class="text-3xl font-bold">Rp 0</p>
+                    <p id="tampil-saldo-akhir" class="text-3xl font-bold">Rp 1209000</p>
                 </div>
             </div>
 
@@ -81,12 +81,12 @@
     </tr>
     <tr class="hover:bg-gray-50">
         <td class="px-5 py-4 border-b">Bank Sampah</td>
-        <td id="tampil-banksampah" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 0</td>
+        <td id="tampil-banksampah" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 765000</td>
         <td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Update</span></td>
     </tr>
     <tr class="hover:bg-gray-50">
         <td class="px-5 py-4 border-b">Kas PKK</td>
-        <td id="tampil-pkk" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 0</td>
+        <td id="tampil-pkk" class="px-5 py-4 border-b text-right font-bold text-indigo-600">Rp 1615000</td>
         <td class="px-5 py-4 border-b text-center"><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">Update</span></td>
     </tr>
 </tbody>
@@ -158,22 +158,41 @@
 
         <div id="activities" class="page">
             <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-indigo-500 pb-2">Dokumentasi Kegiatan</h2>
+			<!-- Bagian Surat Undangan Terbaru -->
+<div class="mb-10">
+    <h3 class="text-xl font-semibold mb-4 text-indigo-700 flex items-center gap-2">
+        <i class="fas fa-envelope-open-text"></i> Undangan Warga Terbaru
+    </h3>
+    <div class="bg-white p-4 rounded-xl shadow-md border-l-4 border-indigo-500">
+        <div class="flex flex-col md:flex-row gap-6 items-center">
+            <!-- Ganti 'undangan.jpg' dengan nama file/URL gambar undangan Anda -->
+            <img src="undangan.jpg" onerror="this.src='https://via.placeholder.com/600x800?text=Belum+Ada+Undangan+Baru'" 
+                 class="w-full md:w-64 rounded-lg shadow-sm cursor-pointer hover:opacity-90 transition" 
+                 onclick="window.open(this.src)">
+            <div>
+                <p class="text-gray-700 font-medium italic mb-2">*Klik gambar untuk memperbesar</p>
+                <p class="text-sm text-gray-600">Pastikan bapak/ibu warga RT 07 dapat menghadiri kegiatan sesuai jadwal yang tertera pada undangan di samping.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<hr class="mb-8 border-gray-200">
              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border">
-                    <img src="kegiatan1.jpg" alt="Kegiatan Jaga Malam" class="w-full h-48 object-cover">
+                    <img src="kerjabakti1.jpg" alt="Kegiatan Bersih Kampung" class="w-full h-48 object-cover">
                     <div class="p-4">
-                        <h3 class="font-bold text-lg text-indigo-800">Jaga Malam</h3>
-                        <p class="text-sm text-gray-500 mb-2 italic">12 April 2026</p>
-                        <p class="text-gray-600 text-sm">Menjaga Keamanan Wilayah</p>
+                        <h3 class="font-bold text-lg text-indigo-800">Kerja Bakti Lingkungan</h3>
+                        <p class="text-sm text-gray-500 mb-2 italic">03 Mei 2026</p>
+                        <p class="text-gray-600 text-sm">Kerja bakti membersihkan rumput liar dan merapikan tanaman</p>
                     </div>
                 </div>
 
                 <div class="bg-white rounded-xl shadow-md overflow-hidden border">
-                    <img src="kegiatan2.jpg" alt="Kerja Bakti" class="w-full h-48 object-cover">
+                    <img src="kerjabakti2.jpg" alt="Menghias Pot" class="w-full h-48 object-cover">
                     <div class="p-4">
-                        <h3 class="font-bold text-lg text-indigo-800">Kerja Bakti Lingkungan</h3>
-                        <p class="text-sm text-gray-500 mb-2 italic">10 Juni 2026</p>
-                        <p class="text-gray-600 text-sm">Pembersihan Selokan Menjelang 17an</p>
+                        <h3 class="font-bold text-lg text-indigo-800">Menghias Pot Warna-Warni</h3>
+                        <p class="text-sm text-gray-500 mb-2 italic">03 Mei 2026</p>
+                        <p class="text-gray-600 text-sm">Membuat dan menghias pot tanaman menggunakan galon</p>
                     </div>
                 </div>
             </div>
@@ -280,11 +299,17 @@
             })
             .catch(error => console.error('Gagal mengambil data:', error));
     }
+function playNotification() {
+    const sound = document.getElementById('notifSound');
+    sound.play().catch(e => console.log("Autoplay diblokir browser, butuh interaksi user pertama kali."));
+}
 
-    // Jalankan fungsi saat halaman dibuka
-    window.onload = loadData;
+// Cek data secara otomatis setiap 30 detik (opsional)
+setInterval(loadData, 30000); 
+window.onload = loadData;
 </script>	
 		</body>
+			<audio id="notifSound" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" preload="auto"></audio>
 			<footer class="mt-10 pb-5 text-center">
     <p class="text-gray-400 text-xs">Aplikasi RT 07 RW 04 Miroto (081226239220)</p>
     <!-- Link rahasia ke halaman admin -->
