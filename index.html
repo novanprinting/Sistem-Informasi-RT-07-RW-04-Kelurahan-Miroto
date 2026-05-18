@@ -45,21 +45,28 @@
         <div id="finance" class="page active">
             <h2 class="text-2xl font-bold mb-6 text-gray-800 border-b-2 border-indigo-500 pb-2">Laporan Keuangan RT Bulan April 2026</h2>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div class="bg-green-500 text-white p-6 rounded-lg shadow">
-                    <p class="text-sm uppercase">SALDO AWAL</p>
-                    <p id="tampil-saldo-awal" class="text-3xl font-bold">Rp 1.609.000</p>
-                </div>
-                <div class="bg-red-500 text-white p-6 rounded-lg shadow">
-                    <p class="text-sm uppercase">TOTAL PENGELUARAN</p>
-                    <p id="tampil-pengeluaran" class="text-3xl font-bold">Rp 400.000</p>
-                </div>
-                <div class="bg-blue-600 text-white p-6 rounded-lg shadow border-4 border-blue-200">
-                    <p class="text-sm uppercase">SALDO AKHIR</p>
-                    <p id="tampil-saldo-akhir" class="text-3xl font-bold">Rp 1.209.000</p>
-                </div>
-            </div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+    <div class="bg-green-500 text-white p-4 rounded-xl shadow flex flex-col justify-between">
+        <p class="text-[10px] md:text-xs font-semibold tracking-wider uppercase opacity-90">Saldo Awal</p>
+        <p id="tampil-saldo-awal" class="text-xl md:text-2xl font-bold mt-1">Rp 1.209.000</p>
+    </div>
 
+    <div class="bg-amber-500 text-white p-4 rounded-xl shadow flex flex-col justify-between">
+        <p class="text-[10px] md:text-xs font-semibold tracking-wider uppercase opacity-90">Pemasukan</p>
+        <p id="tampil-pemasukan" class="text-xl md:text-2xl font-bold mt-1">Rp 763.000</p>
+    </div>
+
+    <div class="bg-red-500 text-white p-4 rounded-xl shadow flex flex-col justify-between">
+        <p class="text-[10px] md:text-xs font-semibold tracking-wider uppercase opacity-90">Pengeluaran</p>
+        <p id="tampil-pengeluaran" class="text-xl md:text-2xl font-bold mt-1">Rp 125.000</p>
+    </div>
+
+    <div class="bg-blue-500 text-white p-4 rounded-xl shadow flex flex-col justify-between">
+        <p class="text-[10px] md:text-xs font-semibold tracking-wider uppercase opacity-90">Saldo Akhir</p>
+        <p id="tampil-saldo-akhir" class="text-xl md:text-2xl font-bold mt-1">Rp 1.847.000</p>
+    </div>
+
+</div>
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <table class="min-w-full leading-normal">
                     <thead>
@@ -291,24 +298,28 @@
 <script>
   // GANTI DENGAN URL WEB APP ANDA TADI
   const urlAPI = "https://script.google.com/macros/s/AKfycbxfeZuQhyUwlARBVixhchqLgc540diPDLsk_vo4L8RU4Comb070icUYO9X670Zc7nEpjg/exec";
+function loadData() {
+    fetch(urlAPI)
+        .then(response => response.json())
+        .then(data => {
+            // Mengisi angka di kotak atas (Dashboard) - SEKARANG ADA 4 KOTAK
+            document.getElementById('tampil-saldo-awal').innerText = "Rp " + Number(data.saldoAwal).toLocaleString('id-ID');
+            
+            // Baris baru untuk memasukkan data Pemasukan dari API Google Sheets Anda
+            // Pastikan di JSON/API Anda namanya adalah 'pemasukan' atau sesuaikan variabelnya
+            document.getElementById('tampil-pemasukan').innerText = "Rp " + Number(data.pemasukan || data.totalPemasukan || 0).toLocaleString('id-ID');
+            
+            document.getElementById('tampil-pengeluaran').innerText = "Rp " + Number(data.pengeluaran).toLocaleString('id-ID');
+            document.getElementById('tampil-saldo-akhir').innerText = "Rp " + Number(data.saldoAkhir).toLocaleString('id-ID');
 
-  function loadData() {
-        fetch(urlAPI)
-            .then(response => response.json())
-            .then(data => {
-                // Mengisi angka di kotak atas (Dashboard)
-                document.getElementById('tampil-saldo-awal').innerText = "Rp " + Number(data.saldoAwal).toLocaleString('id-ID');
-                document.getElementById('tampil-pengeluaran').innerText = "Rp " + Number(data.pengeluaran).toLocaleString('id-ID');
-                document.getElementById('tampil-saldo-akhir').innerText = "Rp " + Number(data.saldoAkhir).toLocaleString('id-ID');
-
-                // Mengisi angka di tabel (Rincian)
-                document.getElementById('tampil-sampah').innerText = "Rp " + Number(data.kasSampah).toLocaleString('id-ID');
-                document.getElementById('tampil-jimpitan').innerText = "Rp " + Number(data.jimpitan).toLocaleString('id-ID');
-                document.getElementById('tampil-banksampah').innerText = "Rp " + Number(data.bankSampah).toLocaleString('id-ID');
-                document.getElementById('tampil-pkk').innerText = "Rp " + Number(data.kasPKK).toLocaleString('id-ID');
-            })
-            .catch(error => console.error('Gagal mengambil data:', error));
-    }
+            // Mengisi angka di tabel (Rincian)
+            document.getElementById('tampil-sampah').innerText = "Rp " + Number(data.kasSampah).toLocaleString('id-ID');
+            document.getElementById('tampil-jimpitan').innerText = "Rp " + Number(data.jimpitan).toLocaleString('id-ID');
+            document.getElementById('tampil-banksampah').innerText = "Rp " + Number(data.bankSampah).toLocaleString('id-ID');
+            document.getElementById('tampil-pkk').innerText = "Rp " + Number(data.kasPKK).toLocaleString('id-ID');
+        })
+        .catch(error => console.error('Gagal mengambil data:', error));
+}
 function playNotification() {
     const sound = document.getElementById('notifSound');
     sound.play().catch(e => console.log("Autoplay diblokir browser, butuh interaksi user pertama kali."));
